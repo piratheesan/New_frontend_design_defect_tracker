@@ -1,0 +1,272 @@
+header
+{
+    height: 10%;
+    width: 100%;
+    background-color: black;
+    margin-top:-25px;
+    color: white;
+    padding-top: 15px;
+    padding-bottom: 12px;
+    /* padding-bottom: 8px;
+    padding-top: 18px;
+    padding-left: 20px; */
+}
+
+.menu
+{    
+    margin-top: -50px;
+    text-align: right;
+    padding-right: 20px;
+}
+.menu_btn
+{
+    background-color:black; 
+    border: none;
+    color: white;
+    padding: 12px 29px;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 17px;
+    padding-bottom: 8px;
+    
+}
+.menu_btn:hover
+{
+    background-color:brown;
+}
+.LeftNav
+{
+    width: 30%;
+    border: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 60px;
+    margin-left: 3%;
+  
+}
+.RightNav
+{
+    float: right;
+    width: 67%;
+    border: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 60px;
+    margin-left: 30%;
+    margin-top: -350px;
+  
+}
+.RightNavdef
+{
+    float: right;
+    width: 67%;
+    border: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* padding-top: 10px; */
+    margin-left: 30%;
+    margin-top: -690px;
+  
+}
+.RightNavemp
+{
+    float: right;
+    width: 67%;
+    border: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* padding-top: 10px; */
+    margin-left: 30%;
+    margin-top: -370px;
+  
+}
+.RightNavlog
+{
+    float: right;
+    width: 25%;
+    border: 2px; 
+    margin-top: -480px;
+    padding-left: 200px;
+  
+}
+h3
+{
+    text-align: left;
+    margin-left: 1%;
+}
+.RightNavreg
+{
+    
+    float: right;
+    width: 25%;
+    border: 2px; 
+    margin-top: -480px;
+    padding-left: 300px;
+    margin-right: 400px;
+  
+}
+
+.txtid
+{
+    height: 35px;
+    width: 80%;
+    position: relative;
+    border-color: rgba(0, 0, 0, .14);
+    background-color:white;
+    font-size: 12px;
+    border-radius: 15px 20px 30px;
+
+    
+}
+.txtid1
+{
+    height: 35px;
+    width: 80%;
+    position: relative;
+    border-color: rgba(0, 0, 0, .14);
+    background-color:white;
+    font-size: 12px;
+    border-radius: 15px 20px 30px;
+
+    
+}
+
+.save_but
+{
+  background-color: rgb(19, 143, 24); 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px 10px;
+}
+.reset_but
+{
+  background-color: rgb(133, 1, 1);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px 12px;
+}
+h1
+{
+    padding-left: 20px;
+    padding-top: 8px;
+}
+h2
+{
+    padding-left: 4px;
+}
+.form_style
+{
+    padding-left: 500px;
+    widows: 200px;
+    background-color:white ;
+    padding-bottom: 100px;
+    padding-top: 50px;
+    margin-top: 40px;
+ 
+}
+.tbl1
+{
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  border-spacing: 5px;
+  
+  
+}
+
+.tbl1 th
+{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: left;
+    background-color:#00695c;
+    color: white;
+}
+
+.tbl1 th td
+{
+    border: 2px solid #ddd;
+    
+}
+
+.del
+{
+    background-color: rgb(224, 34, 34);
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    border-radius: 15px 15px;   
+    width: 20%;
+       
+}
+.deldef
+{
+    background-color: rgb(224, 34, 34);
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    border-radius: 15px 15px;   
+    width: 30%;
+       
+}
+.edit:hover
+{
+    background-color: rgb(37, 37, 182);
+}
+.edit
+{
+    background-color:#039be5;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    border-radius: 15px 15px;
+    width: 20%;
+}
+.editdef
+{
+    background-color:#039be5;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    border-radius: 15px 15px;
+    width: 30%;
+}
+.editdef:hover
+{
+    background-color: rgb(37, 37, 182);
+}
+.del:hover
+{
+    background-color: rgb(124, 36, 36);
+}
+.deldef:hover
+{
+    background-color: rgb(124, 36, 36);
+}
