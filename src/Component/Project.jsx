@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Style.css'
 import Head from './Header.jsx'
+import Footer from './Footer.jsx'
 
 export default class Project extends Component {
     render() {
@@ -43,9 +44,10 @@ export default class Project extends Component {
                     </button></td>
                 </tr>
                 
-            </table>                                        
+                 </table>                                        
                 
                 </div>
+                <Footer />
             </div>
         )
     }

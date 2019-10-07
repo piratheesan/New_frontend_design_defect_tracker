@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from './Header.jsx'
 import './Style.css'
 import logo from '../image/SGIC.jpg';
+import Footer from './Footer.jsx'
 
 export default class index extends Component {
     render() {
@@ -41,7 +42,7 @@ export default class index extends Component {
                 </form>
                 </div>
 
-
+                <Footer />
             </div>
         )
     }

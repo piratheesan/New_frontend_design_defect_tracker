@@ -11,6 +11,20 @@ header
     padding-top: 18px;
     padding-left: 20px; */
 }
+footer
+{
+    background-color:black;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;   
+    color: white; 
+    text-align: center;       
+    position: fixed;
+    padding-bottom: 15px;
+    text-align: center;
+    /* margin-top: -100px; */
+    
+}
 
 .menu
 {    
@@ -144,6 +158,10 @@ h3
   font-size: 16px;
   border-radius: 12px 10px;
 }
+.save_but:hover
+{
+    background-color: rgb(9, 85, 11); 
+}
 .reset_but
 {
   background-color: rgb(133, 1, 1);
@@ -155,6 +173,11 @@ h3
   display: inline-block;
   font-size: 16px;
   border-radius: 10px 12px;
+}
+.reset_but:hover
+{
+    background-color: rgb(61, 8, 8);
+
 }
 h1
 {
@@ -181,8 +204,7 @@ h2
   border-collapse: collapse;
   width: 100%;
   border-spacing: 5px;
-  
-  
+    
 }
 
 .tbl1 th
@@ -190,13 +212,25 @@ h2
     padding-top: 20px;
     padding-bottom: 20px;
     text-align: left;
-    background-color:#00695c;
+    background-color:rgb(17, 64, 95);
     color: white;
 }
 
-.tbl1 th td
+.tbl1 tr:nth-child(odd)
+{
+    background-color: #b6b6b6;
+}
+
+.tbl1 tr:hover 
+{
+    background-color: #ddd;
+}
+
+th, td
 {
     border: 2px solid #ddd;
+    padding: 6px;
+    text-align: left;
     
 }
 
@@ -225,7 +259,7 @@ h2
     display: inline-block;
     font-size: 15px;
     border-radius: 15px 15px;   
-    width: 30%;
+    width: 35%;
        
 }
 .edit:hover
@@ -256,7 +290,7 @@ h2
     display: inline-block;
     font-size: 15px;
     border-radius: 15px 15px;
-    width: 30%;
+    width: 35%;
 }
 .editdef:hover
 {
