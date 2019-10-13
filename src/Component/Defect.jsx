@@ -2,9 +2,43 @@ import React, { Component } from 'react'
 import './Style.css'
 import Head from './Header.jsx'
 import Footer from './Footer.jsx'
+import Axios from 'axios';
 
 export default class Employee extends Component {
+
+    state = {
+        defects: []
+      }
+
+      componentDidMount() {
+        Axios.get(`http://localhost:8080/dt/api/v1/defect`)
+          .then(res => {
+            console.log(res);
+             this.setState({ defects:res.data });
+             console.log( this.setState);
+          })
+          this.refreshDefect();
+    }
+    refreshDefect() {
+        Axios.get("http://localhost:8080/dt/api/v1/defect")
+        .then(res => {
+        //   console.warn("Refresh Service is working");
+          this.setState({ defects:res.data });
+        });
+      }
+
+      handleDelete = (id) => {
+        Axios.delete("http://localhost:8080/dt/api/v1/defect/" + id)
+        .then(res => {
+        //   console.warn("Delete Service is working");
+          this.refreshDefect(res);  
+          window.alert(" defects deleted successfully");
+        });
+      }
+     
+
     render() {
+        console.log(this.state.defects)
         return (
             <div>
             <Head />
@@ -55,25 +89,28 @@ export default class Employee extends Component {
                 <th>Action</th>
                              
             </tr>
+            { this.state.defects.map(d=>{
+            return( 
             <tr>
-                <td>ID</td>
-                <td>Description</td>
-                <td>Name</td>
-                <td>Employee Id</td>
-                <td>Priority</td>
-                <td>Project Id</td>
-                <td>Severity</td>
-                <td>Status</td>               
+                <td>{d.defectId}</td>
+                <td>{d.defectDescription}</td>
+                <td>{d.defectName}</td>
+                <td>{d.empId}</td> 
+                <td>{d.priorityChoices}</td>
+                <td>{d.projectId}</td>
+                <td>{d.severityChoices}</td>
+                <td>{d.status}</td>
+                              
                 <td>&nbsp;&nbsp;<button className="editdef">
                 <i className="fa fa-edit" >
                 &nbsp;Edit</i></button>
-                &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;<button className="deldef">
+                &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;<button className="deldef" onClick={()=>this.handleDelete(d.defectId)}>
                 <i className="fa fa-trash">                        
                 &nbsp;Delete
                 </i>
                 </button></td>
-            </tr>
-            
+                </tr>) 
+                }) }
             </table>                                        
             <br></br><br></br><br></br><br></br>
             </div>

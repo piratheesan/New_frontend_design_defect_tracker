@@ -2,9 +2,41 @@ import React, { Component } from 'react'
 import './Style.css'
 import Head from './Header.jsx'
 import Footer from './Footer.jsx'
+import Axios from 'axios';
 
 export default class Employee extends Component {
+    state = {
+        emp: []
+      }
+
+      componentDidMount() {
+        Axios.get(`http://localhost:8080/dt/api/v1/emp`)
+          .then(res => {
+            //console.log(res);
+             this.setState({ emp:res.data });
+            // console.log( this.setState);
+          })
+          this.refreshEmp();
+    }
+    refreshEmp() {
+        Axios.get("http://localhost:8080/dt/api/v1/emp")
+        .then(res => {       
+          this.setState({ emp:res.data });
+        });
+      }
+
+      handleDelete = (id) => {
+        Axios.delete("http://localhost:8080/dt/api/v1/emp/" + id)
+        .then(res => {
+        //   console.warn("Delete Service is working");
+          this.refreshEmp(res);  
+          window.alert(" Employee deleted successfully");
+        });
+      }
+
+
     render() {
+        console.log(this.state.emp)
         return (
             <div>
             <Head />
@@ -12,17 +44,16 @@ export default class Employee extends Component {
             <h2>Add Employee</h2>
             <form>
                 <label>Name</label><br></br>
-                <input type="text" name="name" className="txtid"></input><br></br><br></br>     
+                <input type="text" name="empName" className="txtid"></input><br></br><br></br>     
                 <label>Type</label> <br></br>                 
-                <input type="text" name="type" className="txtid"></input><br></br><br></br>
-                <label>Project Id</label> <br></br>                 
-                <input type="text" name="proid" className="txtid"></input><br></br><br></br>
+                <input type="text" name="empType" className="txtid"></input><br></br><br></br>
+                <label>Project Id</label> <br></br>          
+                <input type="text" name="empName" className="txtid"></input><br></br><br></br>
                 <button className="save_but" type="submit"> <i className="fa fa-save" >
                 &nbsp;Save</i></button>                       
                 &emsp;<input type="reset" Value="Reset" className="reset_but"/> 
             </form>                             
             </div>
-            
             <div className="RightNavemp">
             <h2>View Employee</h2>
             
@@ -33,23 +64,25 @@ export default class Employee extends Component {
                 <th>Type</th>
                 <th>Project Id</th>           
                 <th>Action</th>
-                             
             </tr>
+                             
+            { this.state.emp.map(e=>{
+            return( 
             <tr>
-                <td>ID</td>
-                <td>Name</td>
-                <td>Type</td>
-                <td>Project Id</td>                
+                <td>{e.empId}</td>
+                <td>{e.empName}</td>
+                <td>{e.empType}</td>
+                <td>{e.projectId}</td>                
                 <td>&nbsp;&nbsp;<button className="edit">
                 <i className="fa fa-edit" >
                 &nbsp;Edit</i></button>
-                &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;<button className="del">
+                &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;<button className="del" onClick={()=>this.handleDelete(e.empId)}>
                 <i className="fa fa-trash">                        
                 &nbsp;Delete
                 </i>
                 </button></td>
-            </tr>
-            
+                </tr>) 
+                }) }            
             </table>                                        
             
             </div>
