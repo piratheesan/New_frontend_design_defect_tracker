@@ -7,18 +7,38 @@ import Axios from 'axios';
 export default class Project extends Component {
 
     state  = {
-        projects: []
+        projects: [], 
+        projectId:"",
+        projectName:'',
+        projectDescription:'',
+        
       }
-    
-    componentDidMount() {
+     
+     
+    componentDidMount() {    
+
       Axios.get("http://localhost:8080/dt/api/v1/project")
           .then(res => {
-            console.log(res);
+            
              this.setState({ projects:res.data });
-             console.log( this.setState);
+           
           })
           this.refreshProject();
     }
+    handleAdd=(e)=>{ 
+      e.preventDefault();
+      Axios.post("http://localhost:8080/dt/api/v1/project/",{projectId:this.state.projectId,projectName:this.state.projectName,projectDescription:this.state.projectDescription})
+      .then(res=>
+       {
+        console.log( this.state);        
+        window.alert("Project added successfully");
+        this.refreshProject(res);
+        
+       }
+      ) 
+      
+    }
+   
     refreshProject() {
         Axios.get("http://localhost:8080/dt/api/v1/project")
         .then(res => {
@@ -29,7 +49,7 @@ export default class Project extends Component {
       handleEdit(id){
         Axios.get("http://localhost:8080/dt/api/v1/project/update/{pid}")
         .then(res => {
-            console.log(res)
+           
           //   console.warn("Refresh Service is working");
             this.setState({ data:res.data });
           });
@@ -42,69 +62,36 @@ export default class Project extends Component {
         this.refreshProject(res);  
         window.alert(" Project deleted successfully");
       });
-    }
+    }  
    
-    // constructor(props) {
-    //   super(props);
-  
-    //   this.state.data = {
-    //     projectName: '',
-    //     projectDescription: '',        
-    //   };
-    // }
-    // handleSubmit = e => {
-    //   e.preventDefault();
-  
-    //   const { projectName, projectDescription } = this.state;  
-    //   const Project = {
-    //     projectName,
-    //     projectDescription,
-    //   };
-  
-    //   Axios
-    //     .post('http://localhost:8080/dt/api/v1/project', Project)
-    //     .then(() => console.log('Project  Added'))
-    //     .catch(err => {
-    //       console.error(err);
-    //     });
-    // };
-    
-    
-    handleChange = event => {
-      this.setState({ projectName: event.target.value });
-      this.setState({ projectDescription: event.target.value });
-    }
-  
-    handleSubmit = event => {
-      event.preventDefault();
-  
-      const Project = {
-        projectName: this.state.projectName,
-        projectDescription: this.state.projectDescription,
-
-      };
-  
-      Axios.post("http://localhost:8080/dt/api/v1/project", { Project })
-        .then(res => {
-          console.log(res);
-          console.log(res.data);
-        })
-     
-  }
+    handleChangepid =(e)=>{
+      this.setState({projectId:e.target.value});
+      console.log( e);
+     }
+    handleChangepname =(e)=>{
+      this.setState({projectName:e.target.value});
+      console.log( e);
+     }
+     handleChangepdes =(e)=>{
+      this.setState({projectDescription:e.target.value});
+      console.log( e);
+     }
   
     render() {
-        console.log(this.state.projects)
+      
         return (
             <div>
             <Head />
                 <div className="LeftNav">           
 
                 <h2>Add Project</h2>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleAdd}>
+                    <label>Id</label><br></br>
+                    <input type="text" name="projectId" className="txtid" value={this.state.projectId}onChange={this.handleChangepid} required ></input><br></br><br></br>     
                     <label>Name</label><br></br>
-                    <input type="text" name="projectName" className="txtid" onChange={this.handleChange}></input><br></br><br></br>     
+                    <input type="text" name="projectName" className="txtid" value={this.state.projectName}onChange={this.handleChangepname} required></input><br></br><br></br>     
                     <label>Description</label> <br></br>                 
-                    <input type="text" name="projectDescription" className="txtid"  onChange={this.handleChange}></input><br></br><br></br>
+                    <input type="text" name="projectDescription" className="txtid" value={this.state.projectDescription}onChange={this.handleChangepdes} required></input><br></br><br></br>
                     <button className="save_but" type="submit"><i className="fa fa-save" >
                     &nbsp;Save</i></button>                                         
                     &emsp;<input type="reset" Value="Reset" className="reset_but"/> 
@@ -139,7 +126,7 @@ export default class Project extends Component {
                 </tr>) 
                 }) }
                  </table>                                               
-                
+                <br></br><br></br><br></br><br></br>
                 </div>
                 <Footer />
             </div>

@@ -7,8 +7,17 @@ import Axios from 'axios';
 export default class Employee extends Component {
 
     state = {
-        defects: []
+        defects: [], 
+        defectId:"",
+        defectName:"",
+        defectDescription:"",
+        empId:"",
+        priorityChoices:"",
+        projectId:"",
+        severityChoices:"",
+        status:"",
       }
+
 
       componentDidMount() {
         Axios.get(`http://localhost:8080/dt/api/v1/defect`)
@@ -18,6 +27,29 @@ export default class Employee extends Component {
              console.log( this.setState);
           })
           this.refreshDefect();
+    }
+
+    handleAdd=(e)=> { 
+      e.preventDefault();
+      Axios.post("http://localhost:8080/dt/api/v1/defect",{
+        defectId:this.state.defectId,
+        defectName:this.state.defectName,
+        defectDescription:this.state.defectDescription,
+        empId:this.state.empId,
+        priorityChoices:this.state.priorityChoices,
+        projectId:this.state.projectId,
+        severityChoices:this.state.severityChoices,
+        status:this.state.status,
+      })
+      .then(res=>
+       {
+        console.log( this.state);        
+        window.alert("Defect added successfully");
+        this.refreshDefect(res);
+        
+       }
+      ) 
+      
     }
     refreshDefect() {
         Axios.get("http://localhost:8080/dt/api/v1/defect")
@@ -35,6 +67,39 @@ export default class Employee extends Component {
           window.alert(" defects deleted successfully");
         });
       }
+
+      handleChangedid =(e)=>{
+        this.setState({defectId:e.target.value});
+        console.log( e);
+       }
+       handleChangedname=(e)=>{
+        this.setState({defectName:e.target.value});
+        console.log( e);
+       }
+       handleChangeddesc =(e)=>{
+        this.setState({defectDescription:e.target.value});
+        console.log( e);
+       }
+       handleChangedeid =(e)=>{
+        this.setState({empId:e.target.value});
+        console.log( e);
+       }
+       handleChangedpriority =(e)=>{
+        this.setState({priorityChoices:e.target.value});
+        console.log( e);
+       }
+       handleChangedpid =(e)=>{
+        this.setState({projectId:e.target.value});
+        console.log( e);
+       }
+       handleChangedseverity =(e)=>{
+        this.setState({severityChoices:e.target.value});
+        console.log( e);
+       }
+       handleChangedstatus =(e)=>{
+        this.setState({status:e.target.value});
+        console.log( e);
+       }
      
 
     render() {
@@ -44,31 +109,33 @@ export default class Employee extends Component {
             <Head />
             <div className="LeftNav">
             <h2>Add Defect</h2>
-            <form>
+            <form onSubmit={this.handleAdd}>
+                <label>Id</label><br></br>
+                <input type="text" name="defectId" className="txtid" value={this.state.defectId}onChange={this.handleChangedid} required></input><br></br><br></br>
                 <label>Name</label><br></br>
-                <input type="text" name="name" className="txtid"></input><br></br><br></br>
+                <input type="text" name="defectName" className="txtid" value={this.state.defectName}onChange={this.handleChangedname} required></input><br></br><br></br>
                 <label>Description</label><br></br>
-                <input type="text" name="description" className="txtid"></input><br></br><br></br>      
+                <input type="text" name="defectDescription" className="txtid" value={this.state.defectDescription}onChange={this.handleChangeddesc} required></input><br></br><br></br>      
                 <label>Employee ID</label> <br></br>                 
-                <input type="text" name="empid" className="txtid"></input><br></br><br></br>
+                <input type="text" name="empId" className="txtid" value={this.state.empId}onChange={this.handleChangedeid} required></input><br></br><br></br>
                 <label>Priority </label><br></br>          
-                <select className="txtid" name="priority"> 
-                    <option>---Please Select---</option>
-                    <option >Low</option>
+                <select className="txtid" name="priorityChoices" value={this.state.priorityChoices}onChange={this.handleChangedpriority} required> 
+                    <option>Low</option>
+                    <option>Medium</option>
                     <option>High</option>
                 </select><br></br><br></br> 
                 <label>Project Id</label> <br></br>
-                <input type="text" name="proid" className="txtid"></input><br></br><br></br>
+                <input type="text" name="projectId" className="txtid" value={this.state.projectId}onChange={this.handleChangedpid} required></input><br></br><br></br>
                 <label>Severity</label><br></br>
-                <select className="txtid" name="severity">
-                    <option>---Please Select---</option>
+                <select className="txtid" name="severityChoices" value={this.state.severityChoices}onChange={this.handleChangedseverity} required>
                     <option>Low</option>
+                    <option>Medium</option>
                     <option>High</option>
                 </select><br></br><br></br>
                 <label>Status</label> <br></br> 
-                <input type="text" name="status" className="txtid"></input><br></br><br></br>                      
-                <button className="save_but" type="submit"><i className="fa fa-save" >
-                &nbsp;Save</i></button>                                          
+                <input type="text" name="status" className="txtid" value={this.state.status}onChange={this.handleChangedstatus} required></input><br></br><br></br>                      
+                <button type="submit" className="save_but"> <i className="fa fa-save" >
+                &nbsp;Save</i></button>                       
                 &emsp;<input type="reset" Value="Reset" className="reset_but"/> 
             </form>                             
             </div>

@@ -6,10 +6,14 @@ import Axios from 'axios';
 
 export default class Employee extends Component {
     state = {
-        emp: []
+        emp: [],
+        empId:"",
+        empName:'',
+        empType:'',
+        projectId:'',
       }
 
-      componentDidMount() {
+    componentDidMount() {
         Axios.get(`http://localhost:8080/dt/api/v1/emp`)
           .then(res => {
             //console.log(res);
@@ -33,7 +37,41 @@ export default class Employee extends Component {
           window.alert(" Employee deleted successfully");
         });
       }
+      handleAdd=(e)=>{ 
+        e.preventDefault();
+        Axios.post("http://localhost:8080/dt/api/v1/emp/",{
+          empId:this.state.empId,
+          empName:this.state.empName,
+          empType:this.state.empType,
+          projectId:this.state.projectId
+        })
+        .then(res=>
+         {
+          console.log( this.state);        
+          window.alert("Employee added successfully");
+          this.refreshEmp(res);
+          
+         }
+        ) 
+        
+      }
 
+      handleChangeeid =(e)=>{
+        this.setState({empId:e.target.value});
+        console.log( e);
+       }
+      handleChangeempname =(e)=>{
+        this.setState({empName:e.target.value});
+        console.log( e);
+       }
+       handleChangeptype =(e)=>{
+        this.setState({empType:e.target.value});
+        console.log( e);
+       }
+       handleChangepid =(e)=>{
+        this.setState({projectId:e.target.value});
+        console.log( e);
+       }
 
     render() {
         console.log(this.state.emp)
@@ -42,13 +80,15 @@ export default class Employee extends Component {
             <Head />
             <div className="LeftNav">
             <h2>Add Employee</h2>
-            <form>
+            <form onSubmit={this.handleAdd}>
+                <label>Id</label><br></br>
+                <input type="text" name="empId" className="txtid" value={this.state.empId}onChange={this.handleChangeeid}></input><br></br><br></br>
                 <label>Name</label><br></br>
-                <input type="text" name="empName" className="txtid"></input><br></br><br></br>     
+                <input type="text" name="empName" className="txtid" value={this.state.empName}onChange={this.handleChangeempname}></input><br></br><br></br>      
                 <label>Type</label> <br></br>                 
-                <input type="text" name="empType" className="txtid"></input><br></br><br></br>
+                <input type="text" name="empType" className="txtid" value={this.state.empType}onChange={this.handleChangeptype}></input><br></br><br></br>
                 <label>Project Id</label> <br></br>          
-                <input type="text" name="empName" className="txtid"></input><br></br><br></br>
+                <input type="text" name="projectId" className="txtid" value={this.state.projectId}onChange={this.handleChangepid}></input><br></br><br></br>
                 <button className="save_but" type="submit"> <i className="fa fa-save" >
                 &nbsp;Save</i></button>                       
                 &emsp;<input type="reset" Value="Reset" className="reset_but"/> 
@@ -86,6 +126,7 @@ export default class Employee extends Component {
             </table>                                        
             
             </div>
+            <br></br><br></br><br></br><br></br><br></br>
             <Footer />
             </div>
         )
