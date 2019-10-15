@@ -116,11 +116,11 @@ export default class Employee extends Component {
                 <td>&nbsp;&nbsp;<button className="edit">
                 <i className="fa fa-edit" >
                 &nbsp;Edit</i></button>
-                &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;<button className="del" onClick={()=>this.handleDelete(e.empId)}>
+                &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;<a href={`/update/${e.empId}`}><button className="del" onClick={()=>this.handleDelete(e.empId)}>
                 <i className="fa fa-trash">                        
                 &nbsp;Delete
                 </i>
-                </button></td>
+                </button></a></td>
                 </tr>) 
                 }) }            
             </table>                                        

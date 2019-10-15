@@ -59,6 +59,15 @@ export default class Employee extends Component {
         });
       }
 
+      handleEdit(id){
+        Axios.get("http://localhost:8080/dt/api/v1/defect/update/{pid}")
+        .then(res => {
+           
+          //   console.warn("Refresh Service is working");
+            this.setState({ defects:res.data });
+          });
+      }
+
       handleDelete = (id) => {
         Axios.delete("http://localhost:8080/dt/api/v1/defect/" + id)
         .then(res => {
@@ -168,9 +177,9 @@ export default class Employee extends Component {
                 <td>{d.severityChoices}</td>
                 <td>{d.status}</td>
                               
-                <td>&nbsp;&nbsp;<button className="editdef">
+                <td>&nbsp;&nbsp;<a href={`/editdef/update/${d.projectId}`}><button className="editdef" onClick={()=>this.handleEdit(d.projectId)}>
                 <i className="fa fa-edit" >
-                &nbsp;Edit</i></button>
+                &nbsp;Edit</i></button></a>
                 &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;<button className="deldef" onClick={()=>this.handleDelete(d.defectId)}>
                 <i className="fa fa-trash">                        
                 &nbsp;Delete

@@ -113,9 +113,9 @@ export default class Project extends Component {
                     <td>{p.projectId}</td>
                     <td>{p.projectDescription}</td>
                     <td>{p.projectName}</td>
-                    <td>&nbsp;&nbsp;<button className="edit">
+                    <td>&nbsp;&nbsp;<a href={`/editpro/update/${p.projectId}`}><button className="editdef" onClick={()=>this.handleEdit(p.projectId)}>
                     <i className="fa fa-edit" >
-                    &nbsp;Edit</i></button>
+                    &nbsp;Edit</i></button></a>
                     &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;
                     <button className="del" onClick={()=>this.handleDelete(p.projectId)}>
                     <i className="fa fa-trash">                        

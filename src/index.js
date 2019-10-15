@@ -8,6 +8,9 @@ import Project from './Component/Project.jsx'
 import Employee from './Component/Employee.jsx'
 import Defect from './Component/Defect.jsx'
 import Home from './Component/Index.jsx'
+import Editpro from './Component/Editproject.jsx'
+import Editemp from './Component/Editemp.jsx'
+import Editdef from './Component/Editdefect.jsx'
 
 ReactDOM.render( <BrowserRouter>
     <Switch>
@@ -16,7 +19,9 @@ ReactDOM.render( <BrowserRouter>
         <Route path='/emp' component={Employee}/>
         <Route path='/pro' component={Project}/>
         <Route path='/def' component={Defect}/>
-       
+        <Route path='/editpro' component={Editpro}/>
+        <Route path='/editemp' component={Editemp}/>
+        <Route path='/editdef' component={Editdef}/>
 
     </Switch>
   </BrowserRouter>, document.getElementById('root'));
