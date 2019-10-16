@@ -13,6 +13,7 @@ export default class Editdefect extends Component {
 
                 <h2>Update Defect</h2>
                 <form>
+                    
                 <label>Id</label><br></br>
                 <input type="text" name="defectId" className="txtid" required></input><br></br><br></br>
                 <label>Name</label><br></br>

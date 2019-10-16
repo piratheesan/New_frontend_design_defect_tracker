@@ -103,17 +103,17 @@ export default class Project extends Component {
                 <table border="2" className="tbl1 form_style">
                 <tr>
                     <th>ID</th>
-                    <th>Description</th>
-                    <th>Name</th>                        
+                    <th>Name</th>  
+                    <th>Description</th>                                         
                     <th>Action</th>                    
                 </tr>
                 { this.state.projects.map(p=>{
                  return(                
                    <tr>
                     <td>{p.projectId}</td>
-                    <td>{p.projectDescription}</td>
                     <td>{p.projectName}</td>
-                    <td>&nbsp;&nbsp;<a href={`/editpro/update/${p.projectId}`}><button className="editdef" onClick={()=>this.handleEdit(p.projectId)}>
+                    <td>{p.projectDescription}</td>                   
+                    <td>&nbsp;&nbsp; <a href={`/editpro/update/${p.projectId}`}><button className="editdef">
                     <i className="fa fa-edit" >
                     &nbsp;Edit</i></button></a>
                     &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;
