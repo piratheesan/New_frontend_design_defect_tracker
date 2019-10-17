@@ -47,11 +47,18 @@ export default class Project extends Component {
         });
       }
       handleEdit(id){
-        Axios.get("http://localhost:8080/dt/api/v1/project/update/{pid}")
-        .then(res => {
-           
-          //   console.warn("Refresh Service is working");
-            this.setState({ data:res.data });
+        Axios
+          .get(
+            `http://localhost:8080/dt/api/v1/project/${id}`
+          )
+          .then(result => { 
+    
+            this.setState({             
+              projectId:result.data.projectId,
+              projectName: result.data.projectName,
+              projectDescription: result.data.projectDescription
+              
+            });
           });
     }
     
@@ -113,9 +120,9 @@ export default class Project extends Component {
                     <td>{p.projectId}</td>
                     <td>{p.projectName}</td>
                     <td>{p.projectDescription}</td>                   
-                    <td>&nbsp;&nbsp; <a href={`/editpro/update/${p.projectId}`}><button className="editdef">
+                    <td>&nbsp;&nbsp; <button className="editdef" onClick={()=>this.handleEdit(p.projectId)}>
                     <i className="fa fa-edit" >
-                    &nbsp;Edit</i></button></a>
+                    &nbsp;Edit</i></button>
                     &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;
                     <button className="del" onClick={()=>this.handleDelete(p.projectId)}>
                     <i className="fa fa-trash">                        

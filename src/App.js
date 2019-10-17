@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
-// import Index from './Component/Index.jsx'
-// import Index from './Component/Editdefect.jsx'
-// import Index from './Component/Editproject.jsx'
-import Index from './Component/Editemp.jsx'
+import Index from './Component/Index.jsx'
+
 
 function App() {
   return (

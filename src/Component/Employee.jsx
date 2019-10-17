@@ -37,6 +37,22 @@ export default class Employee extends Component {
           window.alert(" Employee deleted successfully");
         });
       }
+      handleEdit(id){
+        Axios
+          .get(
+            `http://localhost:8080/dt/api/v1/emp/${id}`
+          )
+          .then(result => { 
+    
+            this.setState({             
+              empId:result.data.empId,
+              empName: result.data.empName,
+              empType: result.data.empType,
+              projectId: result.data.projectId,
+              
+            });
+          });
+    }
       handleAdd=(e)=>{ 
         e.preventDefault();
         Axios.post("http://localhost:8080/dt/api/v1/emp/",{
@@ -113,7 +129,7 @@ export default class Employee extends Component {
                 <td>{e.empName}</td>
                 <td>{e.empType}</td>
                 <td>{e.projectId}</td>                
-                <td>&nbsp;&nbsp;<button className="edit">
+                <td>&nbsp;&nbsp;<button className="edit" onClick={()=>this.handleEdit(e.empId)}>
                 <i className="fa fa-edit" >
                 &nbsp;Edit</i></button>
                 &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;<a href={`/update/${e.empId}`}><button className="del" onClick={()=>this.handleDelete(e.empId)}>
